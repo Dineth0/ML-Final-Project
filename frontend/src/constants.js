@@ -1,6 +1,5 @@
 /**
  * WATER_PARAMS — metadata for each input field.
- * Includes label, field key, unit, placeholder, range hint, and description.
  */
 export const WATER_PARAMS = [
   {
@@ -116,3 +115,35 @@ export const WATER_PARAMS = [
 export const INITIAL_VALUES = Object.fromEntries(
   WATER_PARAMS.map((p) => [p.key, ''])
 )
+
+/**
+ * SAFE_RANGES — WHO / standard safe thresholds per parameter.
+ * Used by ResultCard to highlight out-of-range inputs.
+ * Each entry: { min?, max?, label }
+ */
+export const SAFE_RANGES = {
+  ph:               { min: 6.5,  max: 8.5,   label: '6.5 – 8.5 pH' },
+  Hardness:         {            max: 300,    label: '< 300 mg/L' },
+  Solids:           {            max: 50000,  label: '< 50 000 ppm' },
+  Chloramines:      {            max: 4,      label: '≤ 4 ppm' },
+  Sulfate:          {            max: 500,    label: '< 500 mg/L' },
+  Conductivity:     {            max: 400,    label: '< 400 μS/cm' },
+  Organic_carbon:   { min: 2,   max: 20,     label: '2 – 20 ppm' },
+  Trihalomethanes:  {            max: 80,     label: '≤ 80 μg/L' },
+  Turbidity:        {            max: 4,      label: '< 4 NTU' },
+}
+
+/**
+ * RECOMMENDATIONS — tips keyed by parameter, shown when out of range.
+ */
+export const RECOMMENDATIONS = {
+  ph:              'Adjust pH using lime (to raise) or acid dosing (to lower) until 6.5–8.5.',
+  Hardness:        'Use water softeners or ion-exchange systems to reduce hardness.',
+  Solids:          'Reverse osmosis or distillation can reduce dissolved solids effectively.',
+  Chloramines:     'Use activated carbon filters to remove excess chloramines.',
+  Sulfate:         'Ion exchange or reverse osmosis can remove excess sulfate.',
+  Conductivity:    'High conductivity indicates excess ions — use RO or distillation.',
+  Organic_carbon:  'Activated carbon filtration reduces organic carbon effectively.',
+  Trihalomethanes: 'Aeration or activated carbon filters can reduce THM levels.',
+  Turbidity:       'Coagulation, sedimentation, and sand filtration will lower turbidity.',
+}

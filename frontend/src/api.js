@@ -9,6 +9,7 @@ const api = axios.create({
 })
 
 /**
+ * GET / — Check if backend is alive.
  * @returns {Promise<{message: string, status: string}>}
  */
 export async function checkHealth() {
@@ -17,8 +18,9 @@ export async function checkHealth() {
 }
 
 /**
- * @param {Object} params 
-  @returns {Promise<{potability: number, prediction: string, probability: number}>}
+ * POST /predict — Predict water potability.
+ * @param {Object} params - Water quality parameters
+ * @returns {Promise<{potability: number, prediction: string, probability: number}>}
  */
 export async function predictPotability(params) {
   const res = await api.post('/predict', params)

@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* ─── Navbar offset ─── */
+.page-wrapper {
+  padding-top: 4rem; /* 64px = h-16 navbar height */
+  min-height: 100vh;
+}
+
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-display: 'Outfit', ui-sans-serif, system-ui, sans-serif;
