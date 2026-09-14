@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { motion, useMotionValue, useTransform, animate } from 'framer-motion'
 
 const SIZE = 160
 const STROKE = 12
@@ -6,33 +7,29 @@ const RADIUS = (SIZE - STROKE) / 2
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS
 
 /**
- * CircularGauge — animated SVG ring showing probability percentage.
+ * CircularGauge — Framer Motion animated SVG ring.
+ * Smoothly animates stroke-dashoffset from 0% to the probability value.
  */
 export default function CircularGauge({ probability, isPotable }) {
-  const progressRef = useRef(null)
   const pct = Math.round(probability * 100)
-  const offset = CIRCUMFERENCE - (probability * CIRCUMFERENCE)
+  const progress = useMotionValue(0)
 
-  const strokeColor = isPotable
-    ? 'url(#gaugeGradientGreen)'
-    : 'url(#gaugeGradientRed)'
+  // Map progress (0→1) to strokeDashoffset (CIRCUMFERENCE→0)
+  const dashOffset = useTransform(progress, [0, 1], [CIRCUMFERENCE, CIRCUMFERENCE - probability * CIRCUMFERENCE])
 
   useEffect(() => {
-    if (progressRef.current) {
-      // Force reflow to trigger CSS transition
-      progressRef.current.style.strokeDashoffset = CIRCUMFERENCE
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          if (progressRef.current) {
-            progressRef.current.style.strokeDashoffset = offset
-          }
-        })
-      })
-    }
-  }, [probability, offset])
+    const controls = animate(progress, probability, {
+      duration: 1.4,
+      ease: [0.4, 0, 0.2, 1],
+    })
+    return controls.stop
+  }, [probability, progress])
+
+  const strokeColor = isPotable ? 'url(#gaugeGreen)' : 'url(#gaugeRed)'
+  const textColor   = isPotable ? '#34d399' : '#f87171'
 
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div className="flex flex-col items-center gap-3 flex-shrink-0">
       <svg
         width={SIZE}
         height={SIZE}
@@ -41,16 +38,15 @@ export default function CircularGauge({ probability, isPotable }) {
         role="img"
       >
         <defs>
-          <linearGradient id="gaugeGradientGreen" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#10b981" />
+          <linearGradient id="gaugeGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%"   stopColor="#10b981" />
             <stop offset="100%" stopColor="#14b8a6" />
           </linearGradient>
-          <linearGradient id="gaugeGradientRed" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#ef4444" />
+          <linearGradient id="gaugeRed" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%"   stopColor="#ef4444" />
             <stop offset="100%" stopColor="#f97316" />
           </linearGradient>
-          {/* Glow filter */}
-          <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+          <filter id="gaugeGlow" x="-30%" y="-30%" width="160%" height="160%">
             <feGaussianBlur stdDeviation="3" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
@@ -61,50 +57,43 @@ export default function CircularGauge({ probability, isPotable }) {
 
         {/* Background track */}
         <circle
-          className="circle-track"
-          cx={SIZE / 2}
-          cy={SIZE / 2}
-          r={RADIUS}
+          cx={SIZE / 2} cy={SIZE / 2} r={RADIUS}
+          fill="none"
+          stroke="rgba(255,255,255,0.06)"
           strokeWidth={STROKE}
         />
 
-        {/* Progress arc */}
-        <circle
-          ref={progressRef}
-          className="circle-progress"
-          cx={SIZE / 2}
-          cy={SIZE / 2}
-          r={RADIUS}
-          strokeWidth={STROKE}
+        {/* Animated progress arc */}
+        <motion.circle
+          cx={SIZE / 2} cy={SIZE / 2} r={RADIUS}
+          fill="none"
           stroke={strokeColor}
+          strokeWidth={STROKE}
+          strokeLinecap="round"
           strokeDasharray={CIRCUMFERENCE}
-          strokeDashoffset={CIRCUMFERENCE}
-          transform={`rotate(-90 ${SIZE / 2} ${SIZE / 2})`}
-          filter="url(#glow)"
+          style={{
+            strokeDashoffset: dashOffset,
+            rotate: '-90deg',
+            transformOrigin: `${SIZE / 2}px ${SIZE / 2}px`,
+          }}
+          filter="url(#gaugeGlow)"
         />
 
-        {/* Center text */}
+        {/* Center percentage text */}
         <text
-          x="50%"
-          y="44%"
-          textAnchor="middle"
-          dominantBaseline="middle"
-          fontSize="28"
-          fontWeight="800"
+          x="50%" y="44%"
+          textAnchor="middle" dominantBaseline="middle"
+          fontSize="28" fontWeight="800"
           fontFamily="Outfit, sans-serif"
-          fill={isPotable ? '#34d399' : '#f87171'}
+          fill={textColor}
         >
           {pct}%
         </text>
         <text
-          x="50%"
-          y="62%"
-          textAnchor="middle"
-          dominantBaseline="middle"
-          fontSize="10"
-          fill="#94a3b8"
-          fontFamily="Inter, sans-serif"
-          letterSpacing="0.5"
+          x="50%" y="63%"
+          textAnchor="middle" dominantBaseline="middle"
+          fontSize="10" fill="#94a3b8"
+          fontFamily="Inter, sans-serif" letterSpacing="0.5"
         >
           PROBABILITY
         </text>
