@@ -110,53 +110,6 @@ export default function About() {
             </div>
           </motion.section>
 
-          {/* ─── ML Model Pipeline ─── */}
-          <motion.section className="glass-card p-6 sm:p-8 mb-8" {...fadeUp(0.2)} aria-labelledby="model-heading">
-            <h2 id="model-heading" className="text-xl font-bold text-white mb-6 flex items-center gap-2"
-                style={{ fontFamily: 'Outfit, sans-serif' }}>
-              🌲 The XGBoost Model Pipeline
-            </h2>
-            <p className="text-sm text-slate-400 leading-relaxed mb-6">
-              <strong className="text-slate-200">XGBoost (Extreme Gradient Boosting)</strong> is an optimised gradient-boosted
-              decision tree algorithm renowned for its speed and performance on tabular data. It builds an ensemble
-              of weak learners (decision trees) sequentially, each correcting the errors of the previous one.
-            </p>
-            <div className="relative">
-              {/* Vertical timeline line */}
-              <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-teal-500/40 via-blue-500/30 to-transparent" aria-hidden="true" />
-              <div className="space-y-5">
-                {MODEL_STEPS.map((s) => (
-                  <div key={s.step} className="flex items-start gap-4 pl-14 relative">
-                    <div className="absolute left-0 w-12 h-12 rounded-full bg-gradient-to-br from-teal-500/20 to-blue-600/20
-                                    border border-teal-500/30 flex items-center justify-center flex-shrink-0">
-                      <span className="text-xs font-bold text-teal-400">{s.step}</span>
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-semibold text-white">{s.title}</h3>
-                      <p className="text-xs text-slate-500 mt-0.5 leading-relaxed">{s.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.section>
-
-          {/* ─── Tech Stack ─── */}
-          <motion.section className="mb-10" {...fadeUp(0.25)} aria-labelledby="tech-heading">
-            <h2 id="tech-heading" className="text-xl font-bold text-white mb-5 flex items-center gap-2"
-                style={{ fontFamily: 'Outfit, sans-serif' }}>
-              🛠️ Technology Stack
-            </h2>
-            <div className="flex flex-wrap gap-3">
-              {TECH_STACK.map((t) => (
-                <div key={t.name}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-xl border ${t.bg} ${t.border} ${t.color} text-sm font-medium`}>
-                  <span aria-hidden="true">{t.icon}</span>
-                  {t.name}
-                </div>
-              ))}
-            </div>
-          </motion.section>
 
           {/* ─── CTA ─── */}
           <motion.div className="text-center" {...fadeUp(0.3)}>

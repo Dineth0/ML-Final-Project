@@ -26,17 +26,17 @@ export default function StatusBadge({ status }) {
 
   const cfg = configs[status] ?? configs.checking
 
-  return (
-    <div
-      className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-medium ${cfg.bg} ${cfg.text}`}
-      aria-live="polite"
-      aria-label={`Backend status: ${cfg.label}`}
-    >
-      <span
-        className={`w-2 h-2 rounded-full ${cfg.dot} pulse-dot`}
-        aria-hidden="true"
-      />
-      {cfg.label}
-    </div>
-  )
+  // return (
+  //   <div
+  //     className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-medium ${cfg.bg} ${cfg.text}`}
+  //     aria-live="polite"
+  //     aria-label={`Backend status: ${cfg.label}`}
+  //   >
+  //     <span
+  //       className={`w-2 h-2 rounded-full ${cfg.dot} pulse-dot`}
+  //       aria-hidden="true"
+  //     />
+  //     {cfg.label}
+  //   </div>
+  // )
 }

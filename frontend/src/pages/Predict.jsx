@@ -197,7 +197,7 @@ export default function Predict() {
               >
                 <div className="inline-flex items-center gap-3 text-teal-300 text-sm">
                   <div className="spinner" aria-hidden="true" />
-                  <span>Running XGBoost model prediction…</span>
+                  <span>Running prediction…</span>
                 </div>
               </motion.div>
             )}

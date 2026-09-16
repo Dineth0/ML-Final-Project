@@ -10,8 +10,7 @@ const fadeUp = (delay = 0) => ({
 
 const STATS = [
   { icon: '🔬', value: '9',          label: 'Parameters Analyzed',  color: 'from-teal-500/20 to-teal-600/10',  border: 'border-teal-500/25' },
-  { icon: '⚡', value: 'Real-time',  label: 'ML Prediction',         color: 'from-blue-500/20 to-blue-600/10',  border: 'border-blue-500/25' },
-  { icon: '🌲', value: 'XGBoost',    label: 'Gradient Boost Model',  color: 'from-indigo-500/20 to-indigo-600/10', border: 'border-indigo-500/25' },
+  { icon: '⚡', value: 'Real-time',  label: 'Prediction',         color: 'from-blue-500/20 to-blue-600/10',  border: 'border-blue-500/25' },
   { icon: '💧', value: 'WHO',        label: 'Safety Standards',      color: 'from-cyan-500/20 to-cyan-600/10',  border: 'border-cyan-500/25' },
 ]
 
@@ -19,12 +18,12 @@ const FEATURES = [
   {
     icon: '🎯',
     title: 'Accurate Predictions',
-    desc: 'XGBoost classifier trained on thousands of water samples. Outputs probability scores for transparent, explainable results.',
+    desc: 'Classifier trained on thousands of water samples. Outputs probability scores for transparent, explainable results.',
   },
   {
     icon: '🚀',
     title: 'Instant Analysis',
-    desc: 'Submit your parameters and get a prediction in milliseconds via the FastAPI backend — no waiting, no batch jobs.',
+    desc: 'Submit your parameters and get a prediction in milliseconds no waiting, no batch jobs.',
   },
   {
     icon: '📊',
@@ -92,7 +91,7 @@ export default function Home() {
               {...fadeUp(0.2)}
             >
               Enter 9 water quality parameters and our{' '}
-              <span className="text-teal-400 font-medium">XGBoost machine learning model</span>{' '}
+              <span className="text-teal-400 font-medium"> model</span>{' '}
               instantly predicts whether your water is potable — with confidence scores and safety recommendations.
             </motion.p>
 
@@ -126,7 +125,7 @@ export default function Home() {
           {/* ─── Stat cards ─── */}
           <section className="mb-20" aria-labelledby="stats-heading">
             <h2 id="stats-heading" className="sr-only">Key Features</h2>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
               {STATS.map((s, i) => (
                 <motion.div
                   key={s.label}
