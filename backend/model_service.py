@@ -28,15 +28,14 @@ encoder = joblib.load(
 
 def predict_water_quality(data):
 
-    # Convert input data to DataFrame
     df = pd.DataFrame([data])
 
-    # 1. HANDLE MISSING VALUES
+    # HANDLE MISSING VALUES
 
     for column, median in median_values.items():
         df[column] = df[column].fillna(median)
 
-    # 2. APPLY IQR OUTLIER TREATMENT
+    # APPLY IQR OUTLIER TREATMENT
 
     for column, limits in iqr_limits.items():
         lower_limit, upper_limit = limits
@@ -45,11 +44,11 @@ def predict_water_quality(data):
             upper=upper_limit
         )
 
-    # 3. LOG TRANSFORMATION
+    # LOG TRANSFORMATION
 
     df["Solids"] = np.log1p(df["Solids"])
 
-    # 4. pH BINNING
+    # pH BINNING
 
     bins = [-np.inf,6.5,7.5,np.inf]
 
@@ -57,7 +56,7 @@ def predict_water_quality(data):
 
     df["ph_category"] = pd.cut(df["ph"],bins=bins,labels=labels)
 
-    # 5. ONE-HOT ENCODING
+    # ONE-HOT ENCODING
 
     encoded_values = encoder.transform(df[["ph_category"]])
 
@@ -88,23 +87,20 @@ def predict_water_quality(data):
         inplace=True
     )
 
-    # 6. MATCH TRAINING FEATURE ORDER
+    # MATCH TRAINING FEATURE ORDER
 
     df = df.reindex(columns=feature_columns,fill_value=0)
 
-    # 7. STANDARDIZATION
+    # STANDARDIZATION
 
-    df_scaled = scaler.transform(
-        df
-    )
+    df_scaled = scaler.transform(df)
 
-    # 8. PREDICTION
+    # PREDICTION
 
     prediction = model.predict(df_scaled)[0]
-
     probability = model.predict_proba(df_scaled)[0][1]
 
-    # 9. API RESPONSE
+    #  API RESPONSE
 
     return {
         "potability": int(prediction),
