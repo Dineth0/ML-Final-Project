@@ -166,11 +166,8 @@ Model Saving
 └──────────────────────┘
 
 
----
+```
 
-# 🛠️ Technologies Used
-
-```markdown
 ## 🛠️ Technologies Used
 
 ### Machine Learning
