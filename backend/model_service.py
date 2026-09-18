@@ -5,22 +5,22 @@ import pandas as pd
 # LOAD MODEL ARTIFACTS
 
 model = joblib.load(
-    "model/water_potability_model.pkl"
+    "backend/model/water_potability_model.pkl"
 )
 scaler = joblib.load(
-    "model/scaler.pkl"
+    "backend/model/scaler.pkl"
 )
 feature_columns = joblib.load(
-    "model/feature_columns.pkl"
+    "backend/model/feature_columns.pkl"
 )
 median_values = joblib.load(
-    "model/median_values.pkl"
+    "backend/model/median_values.pkl"
 )
 iqr_limits = joblib.load(
-    "model/iqr_limits.pkl"
+    "backend/model/iqr_limits.pkl"
 )
 encoder = joblib.load(
-    "model/encoder.pkl"
+    "backend/model/encoder.pkl"
 )
 
 
