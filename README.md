@@ -164,3 +164,35 @@ Model Saving
 │ Not Potable          │
 │ + Probability        │
 └──────────────────────┘
+
+
+---
+
+# 🛠️ Technologies Used
+
+```markdown
+## 🛠️ Technologies Used
+
+### Machine Learning
+
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- XGBoost
+- Joblib
+- Jupyter Notebook
+
+### Backend
+
+- FastAPI
+- Pydantic
+- Uvicorn
+
+### Frontend
+
+- React
+- JavaScript
+- Tailwind CSS
+
+
