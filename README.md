@@ -88,6 +88,8 @@ The dataset contains **3,276 water samples** and 9 input features.
 
 ---
 
+
+
 # 🔬 Machine Learning Workflow
 
 The Machine Learning pipeline consists of the following steps:
@@ -114,3 +116,50 @@ Model Evaluation
 Best Model Selection
    ↓
 Model Saving
+
+```
+
+## 🔄 System Architecture
+
+```text
+┌──────────────────────┐
+│   React Frontend     │
+│                      │
+│ Water Quality Input  │
+└──────────┬───────────┘
+           │
+           │ HTTP POST /predict
+           ▼
+┌──────────────────────┐
+│   FastAPI Backend    │
+│                      │
+│ Input Validation     │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Data Preprocessing   │
+│                      │
+│ • Missing Values     │
+│ • IQR Clipping       │
+│ • Log Transformation │
+│ • pH Encoding        │
+│ • Feature Scaling    │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│   ML Model           │
+│                      │
+│ Water Potability     │
+│ Prediction           │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Prediction Result    │
+│                      │
+│ Potable /            │
+│ Not Potable          │
+│ + Probability        │
+└──────────────────────┘
