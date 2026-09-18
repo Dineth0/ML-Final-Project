@@ -104,8 +104,8 @@ export default function ResultCard({ result, inputs, params }) {
           {/* Model note */}
           <div className="rounded-xl p-3 bg-white/3 border border-white/8 text-xs text-slate-400 leading-relaxed">
             {isPotable
-              ? `XGBoost model predicts ${pct}% confidence this water is safe. Parameters appear within acceptable ranges.`
-              : `XGBoost model predicts only ${pct}% potability. One or more parameters may exceed safe thresholds — treat water before use.`}
+              ? ` ${pct}% confidence this water is safe. Parameters appear within acceptable ranges.`
+              : `Only ${pct}% potability. One or more parameters may exceed safe thresholds — treat water before use.`}
           </div>
         </div>
       </motion.div>

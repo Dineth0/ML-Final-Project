@@ -240,7 +240,7 @@ export default function Predict() {
         </div>
 
         <footer className="text-center pb-8 text-xs text-slate-700">
-          Water Potability Predictor · React + FastAPI + XGBoost
+          Water Potability Predictor 
         </footer>
       </div>
     </PageTransition>
