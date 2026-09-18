@@ -8,7 +8,7 @@ The project consists of a Machine Learning model, a FastAPI backend, and a React
 
 ## 👥 Team
 
-**Team Name:** AquaGuards
+**Team Name:** Aqua Guards
 
 ### Team Members
 
