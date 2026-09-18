@@ -192,4 +192,7 @@ Model Saving
 - JavaScript
 - Tailwind CSS
 
+## 🎥 Project Demo
 
+▶️ **Watch the Project Demo:**  
+(https://drive.google.com/file/d/1v2DCysIEwskntY9bVXzzQKWp6Z-vTEjP/view?usp=sharing)
