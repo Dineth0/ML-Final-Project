@@ -18,7 +18,7 @@ The project consists of a Machine Learning model, a FastAPI backend, and a React
 | 2 | W. Agasthi Arun Fernando |  241711012 |
 | 3 | Dilshan Hesara | 241711049 |
 | 4 | Sumuditha Janith | 241711016 |
-
+| 5 | Dolawaththa Don Devindee Tharaka | 241711067 |
 ## 📌 Project Overview
 
 Water quality is an important factor in determining whether water is suitable for drinking.
