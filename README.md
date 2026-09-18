@@ -143,7 +143,8 @@ Model Saving
 │ • Missing Values     │
 │ • IQR Clipping       │
 │ • Log Transformation │
-│ • pH Encoding        │
+│ • Binning            |
+| • Encoding           │
 │ • Feature Scaling    │
 └──────────┬───────────┘
            │
