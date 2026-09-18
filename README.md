@@ -41,8 +41,6 @@ The system returns:
 - **Not Potable** – predicted as not suitable for drinking
 - **Probability** – model probability for the potable class
 
-> **Note:** The prediction is a Machine Learning prediction and should not be treated as a laboratory water-safety certification.
-
 ---
 
 ## 🎯 Objectives
