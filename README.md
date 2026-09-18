@@ -8,7 +8,7 @@ The project consists of a Machine Learning model, a FastAPI backend, and a React
 
 ## 👥 Team
 
-**Team Name:** PuraTest
+**Team Name:** AquaGuards
 
 ### Team Members
 
